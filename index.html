@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEONRIFT — Escape into the Grid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <!-- Animated background grid -->
+  <div class="bg-grid"></div>
+  <div class="scanlines"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-bracket">[</span>
+      <span class="logo-text">NEON<span class="logo-accent">RIFT</span></span>
+      <span class="logo-bracket">]</span>
+    </div>
+    <div class="nav-links">
+      <a href="#games">GAMES</a>
+      <a href="#leaderboard">SCORES</a>
+      <a href="#about">ABOUT</a>
+    </div>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      <span class="status-text">ONLINE</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glitch-wrapper">
+      <h1 class="hero-title" data-text="NEONRIFT">NEONRIFT</h1>
+    </div>
+    <p class="hero-sub">ESCAPE INTO THE GRID</p>
+    <p class="hero-desc">5 cyberpunk games. Infinite dopamine. Zero mercy.</p>
+    <a href="#games" class="hero-cta">
+      <span>ENTER THE RIFT</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </a>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-val">5</span><span class="stat-label">GAMES</span></div>
+      <div class="stat-divider">|</div>
+      <div class="stat"><span class="stat-val">∞</span><span class="stat-label">RUNS</span></div>
+      <div class="stat-divider">|</div>
+      <div class="stat"><span class="stat-val">0</span><span class="stat-label">COST</span></div>
+    </div>
+  </section>
+
+  <!-- GAMES GRID -->
+  <section id="games" class="games-section">
+    <div class="section-header">
+      <span class="section-tag">// GAME_LIBRARY</span>
+      <h2 class="section-title">SELECT YOUR GAME</h2>
+    </div>
+    <div class="games-grid">
+
+      <div class="game-card" data-game="snake" onclick="openGame('snake')">
+        <div class="card-glow"></div>
+        <div class="card-tag">01</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 40 Q10 20 30 20 Q50 20 50 40 Q50 60 70 60" stroke="#00ff88" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <circle cx="70" cy="60" r="6" fill="#00ff88"/>
+            <circle cx="72" cy="57" r="2" fill="#000"/>
+          </svg>
+        </div>
+        <h3 class="card-title">NEON SNAKE</h3>
+        <p class="card-desc">Grow your glowing serpent. Don't bite yourself. Classic chaos.</p>
+        <div class="card-meta">
+          <span class="card-diff diff-easy">EASY START</span>
+          <span class="card-score" id="snake-score">HI: 0</span>
+        </div>
+        <div class="card-play">PLAY NOW →</div>
+      </div>
+
+      <div class="game-card featured" data-game="runner" onclick="openGame('runner')">
+        <div class="card-glow"></div>
+        <div class="card-tag">02</div>
+        <div class="card-badge">⚡ STORY MODE</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="55" width="50" height="4" fill="#ff0080" opacity="0.4"/>
+            <rect x="5" y="55" width="10" height="4" fill="#ff0080"/>
+            <rect x="65" y="55" width="10" height="4" fill="#ff0080"/>
+            <rect x="30" y="30" width="12" height="25" rx="2" fill="#ff0080"/>
+            <circle cx="36" cy="24" r="7" fill="#ff0080"/>
+            <line x1="30" y1="38" x2="20" y2="45" stroke="#ff0080" stroke-width="3" stroke-linecap="round"/>
+            <line x1="42" y1="38" x2="52" y2="43" stroke="#ff0080" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="card-title">GRID RUNNER</h3>
+        <p class="card-desc">Rogue agent. Neon city. You run or you die. A story of survival.</p>
+        <div class="card-meta">
+          <span class="card-diff diff-hard">STORY + RUN</span>
+          <span class="card-score" id="runner-score">HI: 0</span>
+        </div>
+        <div class="card-play">PLAY NOW →</div>
+      </div>
+
+      <div class="game-card" data-game="flappy" onclick="openGame('flappy')">
+        <div class="card-glow"></div>
+        <div class="card-tag">03</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="40" rx="14" ry="10" fill="#00cfff"/>
+            <path d="M26 38 L10 28 L28 36" fill="#00cfff"/>
+            <circle cx="46" cy="37" r="3" fill="#000"/>
+            <circle cx="47" cy="36" r="1" fill="white"/>
+            <path d="M54 40 L60 43" stroke="#ff8c00" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="card-title">CYBER FLAP</h3>
+        <p class="card-desc">Dodge neon towers in a cyberpunk skyline. One tap. Pure skill.</p>
+        <div class="card-meta">
+          <span class="card-diff diff-medium">REFLEX</span>
+          <span class="card-score" id="flappy-score">HI: 0</span>
+        </div>
+        <div class="card-play">PLAY NOW →</div>
+      </div>
+
+      <div class="game-card" data-game="2048" onclick="openGame('2048')">
+        <div class="card-glow"></div>
+        <div class="card-tag">04</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="26" height="26" rx="4" fill="#a855f7" opacity="0.8"/>
+            <rect x="44" y="10" width="26" height="26" rx="4" fill="#7c3aed" opacity="0.8"/>
+            <rect x="10" y="44" width="26" height="26" rx="4" fill="#7c3aed" opacity="0.8"/>
+            <rect x="44" y="44" width="26" height="26" rx="4" fill="#4f46e5"/>
+            <text x="57" y="62" font-family="monospace" font-size="10" fill="white" text-anchor="middle">2048</text>
+          </svg>
+        </div>
+        <h3 class="card-title">FUSION 2048</h3>
+        <p class="card-desc">Merge neon tiles to reach 2048. Strategy meets obsession.</p>
+        <div class="card-meta">
+          <span class="card-diff diff-medium">STRATEGY</span>
+          <span class="card-score" id="2048-score">HI: 0</span>
+        </div>
+        <div class="card-play">PLAY NOW →</div>
+      </div>
+
+      <div class="game-card" data-game="breakout" onclick="openGame('breakout')">
+        <div class="card-glow"></div>
+        <div class="card-tag">05</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="12" width="14" height="8" rx="2" fill="#ff0080"/>
+            <rect x="28" y="12" width="14" height="8" rx="2" fill="#00cfff"/>
+            <rect x="46" y="12" width="14" height="8" rx="2" fill="#ff0080"/>
+            <rect x="10" y="24" width="14" height="8" rx="2" fill="#00cfff"/>
+            <rect x="28" y="24" width="14" height="8" rx="2" fill="#ff0080"/>
+            <rect x="46" y="24" width="14" height="8" rx="2" fill="#00cfff"/>
+            <circle cx="50" cy="55" r="5" fill="white"/>
+            <rect x="22" y="68" width="26" height="6" rx="3" fill="#a855f7"/>
+          </svg>
+        </div>
+        <h3 class="card-title">LASER BREAK</h3>
+        <p class="card-desc">Blast neon bricks with a laser ball. Paddle. Aim. Destroy.</p>
+        <div class="card-meta">
+          <span class="card-diff diff-easy">ARCADE</span>
+          <span class="card-score" id="breakout-score">HI: 0</span>
+        </div>
+        <div class="card-play">PLAY NOW →</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section id="leaderboard" class="leaderboard-section">
+    <div class="section-header">
+      <span class="section-tag">// HIGH_SCORES</span>
+      <h2 class="section-title">HALL OF GLORY</h2>
+    </div>
+    <div class="lb-grid">
+      <div class="lb-card" id="lb-snake">
+        <h4>🐍 NEON SNAKE</h4>
+        <div class="lb-entries" id="lb-snake-list"><div class="lb-empty">No scores yet. Be the first.</div></div>
+      </div>
+      <div class="lb-card" id="lb-runner">
+        <h4>🏃 GRID RUNNER</h4>
+        <div class="lb-entries" id="lb-runner-list"><div class="lb-empty">No scores yet. Be the first.</div></div>
+      </div>
+      <div class="lb-card" id="lb-flappy">
+        <h4>🐦 CYBER FLAP</h4>
+        <div class="lb-entries" id="lb-flappy-list"><div class="lb-empty">No scores yet. Be the first.</div></div>
+      </div>
+      <div class="lb-card" id="lb-2048">
+        <h4>🧩 FUSION 2048</h4>
+        <div class="lb-entries" id="lb-2048-list"><div class="lb-empty">No scores yet. Be the first.</div></div>
+      </div>
+      <div class="lb-card" id="lb-breakout">
+        <h4>💥 LASER BREAK</h4>
+        <div class="lb-entries" id="lb-breakout-list"><div class="lb-empty">No scores yet. Be the first.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <div class="about-content">
+      <span class="section-tag">// ABOUT</span>
+      <h2>BUILT FOR THE GRID</h2>
+      <p>NEONRIFT is a cyberpunk arcade — free, fast, and forever in beta. Five handcrafted games, zero ads, infinite replayability. Escape into the grid whenever you need a break from reality.</p>
+      <div class="about-tags">
+        <span>FREE TO PLAY</span><span>NO ADS</span><span>NO LOGIN</span><span>OPEN SOURCE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">[NEONRIFT]</div>
+    <p class="footer-sub">© 2025 NEONRIFT — Escape into the Grid</p>
+    <p class="footer-mono">// Built with passion. No tracking. No BS.</p>
+  </footer>
+
+  <!-- GAME MODAL OVERLAY -->
+  <div class="game-overlay" id="game-overlay">
+    <div class="game-modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modal-title">GAME</span>
+        <div class="modal-controls">
+          <button class="modal-btn" id="modal-restart" onclick="restartGame()">↺ RESTART</button>
+          <button class="modal-btn modal-close" onclick="closeGame()">✕ EXIT</button>
+        </div>
+      </div>
+      <div class="modal-score-bar">
+        <span>SCORE: <strong id="modal-score">0</strong></span>
+        <span>BEST: <strong id="modal-best">0</strong></span>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/snake.js"></script>
+  <script src="js/runner.js"></script>
+  <script src="js/flappy.js"></script>
+  <script src="js/2048.js"></script>
+  <script src="js/breakout.js"></script>
+</body>
+</html>
